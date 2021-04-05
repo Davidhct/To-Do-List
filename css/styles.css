@@ -1,0 +1,268 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100%;
+  background-color: rgb(241, 205, 182);
+}
+
+h1 {
+  color: rgb(255, 255, 255);
+  font-size: 3rem;
+  font-weight: 50;
+  margin: 1rem 0 0rem;
+  text-align: center;
+  font-family: "Hind", sans-serif;
+}
+
+.title-part-1 {
+  color: rgb(30, 144, 255);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.title-part-1:hover {
+  color: rgb(255, 81, 0);
+  transition: 1s;
+}
+
+.title-part-2 {
+  color: rgb(255, 81, 0);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.title-part-2:hover {
+  color: rgb(30, 144, 255);
+  transition: 1s;
+}
+
+.input-Div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.input {
+  background-color: rgba(177, 169, 169, 0.568);
+  padding: 1.5rem 1.5rem;
+  outline: none;
+  border: none;
+  height: 40px;
+  border-radius: 25px;
+  width: 50%;
+  margin: 1.5rem;
+  margin-right: 0;
+  font-size: 1.3rem;
+}
+
+.add-Btn {
+  background-color: rgb(30, 144, 255);
+  color: rgb(255, 81, 0);
+  outline: none;
+  border: none;
+  height: 45px;
+  width: 45px;
+  transition: 1s;
+  text-align: center;
+  font-size: 35px;
+  padding: 2px 10px;
+  margin-left: 0.5%;
+  cursor: pointer;
+  border-radius: 22px;
+}
+
+.add-Btn:hover {
+  background-color: rgb(255, 81, 0);
+  color: rgb(30, 144, 255);
+  transition: 0.5s;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30%;
+}
+
+.clear-All-Btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(30, 144, 255);
+  color: rgb(255, 81, 0);
+  height: 4vh;
+  width: 5%;
+  transition: 1s;
+  font-family: "Hind", sans-serif;
+  margin-left: 0.5%;
+  border-radius: 10px;
+}
+.clear-All-Btn:hover {
+  background-color: rgb(212, 33, 33);
+  color: black;
+  transition: 0.5s;
+}
+
+.select-Todo {
+  border: none;
+  outline: none;
+  font-family: "Hind", sans-serif;
+  background: rgba(177, 169, 169, 0.568);
+  cursor: pointer;
+  border-radius: 10px;
+  margin-left: 5%;
+  appearance: none;
+  background-image: url("./images/dropDown_icon.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  width: 12%;
+  padding-left: 0.5%;
+}
+
+#ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-top: 1%;
+  list-style-type: none;
+}
+
+.li-Item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
+  border-bottom: 2px solid rgb(30, 144, 255);
+  margin-bottom: 1rem;
+  width: 40%;
+  height: 9vh;
+  border-radius: 0;
+}
+
+.li-Item:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgb(255, 81, 0);
+  transition: 0.5s;
+  border-radius: 30px;
+}
+
+.li-Input {
+  background: none;
+  outline: none;
+  border: none;
+  width: 70%;
+  color: rgb(12, 12, 12);
+  font-size: 1.4rem;
+}
+
+.close-Btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-Btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: none;
+  outline: none;
+  border: none;
+  padding-left: 2%;
+  cursor: pointer;
+}
+
+.check-Btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: none;
+  outline: none;
+  border: none;
+  padding-left: 10%;
+  cursor: pointer;
+}
+
+ul .li-Item.checked {
+  color: rgb(228, 13, 13);
+  text-decoration-line: line-through;
+}
+
+@media only screen and (max-width: 1024px) {
+  .clear-All-Btn {
+    width: 10%;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .input {
+    margin-left: 0;
+    width: 90%;
+  }
+  .options {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0%;
+  }
+  .clear-All-Btn {
+    width: 10%;
+  }
+
+  .select-Todo {
+    width: 10%;
+  }
+  .li-Item {
+    padding: 0.5rem;
+    border-bottom: 2px solid rgb(30, 144, 255);
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 9vh;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .input {
+    margin-left: 0;
+    width: 90%;
+  }
+  .options {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0%;
+  }
+  .clear-All-Btn {
+    width: 20%;
+  }
+
+  .select-Todo {
+    width: 20%;
+  }
+  .li-Item {
+    padding: 0.5rem;
+    border-bottom: 2px solid rgb(30, 144, 255);
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 9vh;
+    border-radius: 0;
+  }
+}
