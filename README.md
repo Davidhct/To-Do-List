@@ -23,6 +23,7 @@ The purpose of the project is to learn the Javascript programming language and i
 ![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_3.png)
 ![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_4.png)
 ![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_5.png)
+![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_6.png)
 
 
 
