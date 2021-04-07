@@ -9,6 +9,20 @@ window.addEventListener('keydown', function(event) {
   }
 }); 
 
+let i = 0;
+let flag = true;
+// let isExists = false;
+
+function ifTaskExists(inputVal) {
+  
+  for (let k = 0; k < todoStorage.length; k++) {
+    if (inputVal === todoStorage[k]) {
+      return true;
+    }
+  }
+  return false;
+}
+
 if(window.localStorage.getItem("todoStorage") == undefined){
     let todoStorage = [];
     
@@ -19,10 +33,6 @@ let todoArray = localStorage.getItem("todoStorage");
 let todoStorage = JSON.parse(todoArray);
 
 
-let i = 0;
-let flag = true;
-let isEdit = true;
-let isChecked = true;
 
 // load the localstorage in the todo app
 onload = function() {
@@ -41,11 +51,17 @@ onload = function() {
 }
 // check if input is empty and create new list
 function checkList() {
-  let inputVal = document.getElementById('list-Input').value.trim()
+
   
-  if(inputVal === '') {
-    alert("You did not add anything to the list! ") 
+  let inputVal = document.getElementById('list-Input').value.trim();
+  let isExists = ifTaskExists(inputVal);
+  
+  if(isExists) {
+    alert("This task is already in the list! ");
+  } else if (inputVal === '') { 
+    alert("You did not add anything to the list! ");
   } else {
+    console.log(todoStorage);
     todoStorage.push(inputVal);
     localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
 
@@ -149,28 +165,51 @@ function createEditButton(input) {
 
 function editItem(editBtn, input, imgEdit, imgEditting) {
   let index = todoStorage.indexOf(input.value);
-  
-  editBtn.addEventListener('click', function() {
-    
-    if (input.disabled === true && isEdit === true) {
-      input.disabled = !input.disabled;
-      isChecked = false;
-      
-      editBtn.removeChild(imgEdit)
-      editBtn.appendChild(imgEditting);
-    } else {
-      if (isEdit){
-        editBtn.removeChild(imgEditting);
-        editBtn.appendChild(imgEdit); 
+  let inputTmp = input.value;
+  editBtn.addEventListener('click', function(e) {
+    let input_ = e.target.parentNode.parentNode.childNodes[0];
+
+    if (e.target.parentNode.parentNode.childNodes[0].value === input.value && e.target.parentNode.parentNode.classList[1] !== 'checked') {
+      if (e.target.parentNode.parentNode.classList.toggle('edit')){
         
-        input.disabled = !input.disabled;
-        todoStorage[index] = input.value;
-        localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
-        isEdit = true;
-        isChecked = true;
+        input_.disabled = !input_.disabled;
+        console.log('1');
+        editBtn.removeChild(imgEdit)
+        editBtn.appendChild(imgEditting);
+      } else {
+        if (input_.value !== inputTmp){
+          let isExists = ifTaskExists(input_.value);
+          if (isExists) {
+            console.log(isExists);
+            alert("This task is already in the list! ");
+            document.getElementById('list-Input').value = '';
+            input_.value = inputTmp;
+            editBtn.removeChild(imgEditting);
+            editBtn.appendChild(imgEdit); 
+            input_.disabled = !input_.disabled;
+          } 
+          if (!isExists) { 
+            console.log(isExists);
+            editBtn.removeChild(imgEditting);
+            editBtn.appendChild(imgEdit); 
+            input_.disabled = !input_.disabled;
+            todoStorage[index] = input_.value;
+            localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
+          }
+        }else{ 
+          editBtn.removeChild(imgEditting);
+          editBtn.appendChild(imgEdit); 
+          input_.disabled = !input_.disabled;
+          todoStorage[index] = input_.value;
+          localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
+        }
+          
+          
+          
+        }
       }
-    }
-  }); 
+    
+  },false); 
   
   
 }
@@ -195,23 +234,22 @@ function createCheckButton(input) {
 
 function checkItem(checkBtn, imgCheck, imgChecked, input) {
   
-  checkBtn.addEventListener('click' ,function(ev) {
-    if (isChecked === true) {  
-      if (ev.target.parentNode.parentNode.tagName === 'LI'){
-        if (ev.target.parentNode.parentNode.classList.toggle('checked')) {
-          isEdit = false;
+  checkBtn.addEventListener('click' ,function(e) {
+      
+      if (e.target.parentNode.parentNode.childNodes[0].value === input.value && e.target.parentNode.parentNode.classList[1] !== 'edit'){
+        if (e.target.parentNode.parentNode.classList.toggle('checked')) {
+          
           checkBtn.removeChild(imgCheck);
           checkBtn.appendChild(imgChecked);
           
         } else {
           
-          isEdit = true;
           checkBtn.removeChild(imgChecked);
           checkBtn.appendChild(imgCheck);
           
         }
-      }
-    } 
+    }
+    
   }, false);
 }
 
