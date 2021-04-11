@@ -1,17 +1,23 @@
 
+let i = 0;
+let flag = true;
+let isEdit = false;
+
 
 // enter input with "Enter" key
 document.getElementById("add-Btn").addEventListener('click',checkList);
 window.addEventListener('keydown', function(event) {
   if (event.which === 13) {
     event.preventDefault();
+    if (isEdit){
+      return document.getElementById("edit-btn");
+      
+    }
     document.getElementById("add-Btn").click();
   }
 }); 
 
-let i = 0;
-let flag = true;
-// let isExists = false;
+
 
 function ifTaskExists(inputVal) {
   
@@ -148,7 +154,7 @@ function createEditButton(input) {
   let editBtn = document.createElement('button');
   let imgEdit = document.createElement('img');
   let imgEditting = document.createElement('img');
-
+  editBtn.id = 'edit-btn';
   imgEdit.src = './css/images/edit_icon.png';
   imgEditting.src = './css/images/editting_icon.png';
 
@@ -167,48 +173,49 @@ function editItem(editBtn, input, imgEdit, imgEditting) {
   let index = todoStorage.indexOf(input.value);
   let inputTmp = input.value;
   editBtn.addEventListener('click', function(e) {
+    isEdit = true;
     let input_ = e.target.parentNode.parentNode.childNodes[0];
 
     if (e.target.parentNode.parentNode.childNodes[0].value === input.value && e.target.parentNode.parentNode.classList[1] !== 'checked') {
       if (e.target.parentNode.parentNode.classList.toggle('edit')){
         
         input_.disabled = !input_.disabled;
-        console.log('1');
         editBtn.removeChild(imgEdit)
         editBtn.appendChild(imgEditting);
+        
       } else {
         if (input_.value !== inputTmp){
           let isExists = ifTaskExists(input_.value);
           if (isExists) {
-            console.log(isExists);
             alert("This task is already in the list! ");
             document.getElementById('list-Input').value = '';
+            input_.disabled = !input_.disabled;
+            editBtn.removeChild(imgEditting);
+            editBtn.appendChild(imgEdit); 
             input_.value = inputTmp;
-            editBtn.removeChild(imgEditting);
-            editBtn.appendChild(imgEdit); 
-            input_.disabled = !input_.disabled;
+            isEdit = false;
+            return;
+            
           } 
-          if (!isExists) { 
+          else if (!isExists) { 
             console.log(isExists);
+            input_.disabled = !input_.disabled;
             editBtn.removeChild(imgEditting);
             editBtn.appendChild(imgEdit); 
-            input_.disabled = !input_.disabled;
             todoStorage[index] = input_.value;
             localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
+            isEdit = false;
+            return;
           }
-        }else{ 
-          editBtn.removeChild(imgEditting);
-          editBtn.appendChild(imgEdit); 
-          input_.disabled = !input_.disabled;
-          todoStorage[index] = input_.value;
-          localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
-        }
-          
-          
-          
-        }
+        } 
+          // input_.disabled = !input_.disabled;
+          // editBtn.removeChild(imgEditting);
+          // editBtn.appendChild(imgEdit); 
+          // document.getElementById('list-Input').value = '';
+          // todoStorage[index] = input_.value;
+          // localStorage.setItem("todoStorage", JSON.stringify(todoStorage)); 
       }
-    
+    }
   },false); 
   
   
