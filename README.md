@@ -21,13 +21,13 @@ Also, learn how localstorage works and how to use it.
 * When marking a completed task it is not possible to edit it unless you uncheck the same task.
 * When editing a task you cannot mark a task unless you stop editing.
 
+<kbd><img src="/demo images/img_1.png" width="630" height="300"></kbd>
+<kbd><img src="/demo images/img_2.png" width="630" height="300"></kbd>
+<kbd><img src="/demo images/img_3.png" width="630" height="300"></kbd>
+<kbd><img src="/demo images/img_4.png" width="630" height="300"></kbd>
+<kbd><img src="/demo images/img_5.png" width="630" height="300"></kbd>
+<kbd><img src="/demo images/img_6.png" width="630" height="300"></kbd>
 
-![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_1.png)
-![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_2.png)
-![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_3.png)
-![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_4.png)
-![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_5.png)
-![picture](https://github.com/Davidhct/To-Do-List/blob/main/demo%20images/img_6.png)
 
 
 
