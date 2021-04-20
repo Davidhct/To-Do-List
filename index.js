@@ -169,7 +169,7 @@ function editItem(editBtn, input, imgEdit, imgEditting) {
   let index = todoStorage.indexOf(input.value);
   let inputTmp = input.value;
   editBtn.addEventListener('click', function(e) {
-    
+
     isEdit = true;
 
     if (e.target.parentNode.parentNode.childNodes[0].value === input.value && e.target.parentNode.parentNode.classList[1] !== 'checked') {
@@ -184,7 +184,6 @@ function editItem(editBtn, input, imgEdit, imgEditting) {
         input.value = input.value.trim();
 
         if (ifTaskExists(input.value)) {
-          idOpen = false;
           alert("This task is already in the list! ");
           input.value = inputTmp;
         } else if (input.value === '') { 
