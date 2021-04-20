@@ -57,8 +57,6 @@ onload = function() {
 }
 // check if input is empty and create new list
 function checkList() {
-
-  
   let inputVal = document.getElementById('list-Input').value.trim();
   let isExists = ifTaskExists(inputVal);
   
@@ -67,7 +65,7 @@ function checkList() {
   } else if (inputVal === '') { 
     alert("You did not add anything to the list! ");
   } else {
-    console.log(todoStorage);
+    
     todoStorage.push(inputVal);
     localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
 
@@ -167,53 +165,38 @@ function createEditButton(input) {
   
 }  
 
-
-
 function editItem(editBtn, input, imgEdit, imgEditting) {
   let index = todoStorage.indexOf(input.value);
   let inputTmp = input.value;
   editBtn.addEventListener('click', function(e) {
+    
     isEdit = true;
-    let input_ = e.target.parentNode.parentNode.childNodes[0];
 
     if (e.target.parentNode.parentNode.childNodes[0].value === input.value && e.target.parentNode.parentNode.classList[1] !== 'checked') {
       if (e.target.parentNode.parentNode.classList.toggle('edit')){
-        
-        input_.disabled = !input_.disabled;
-        editBtn.removeChild(imgEdit)
-        editBtn.appendChild(imgEditting);
+        if (input.disabled === true) {
+          input.disabled = !input.disabled;
+          editBtn.removeChild(imgEdit)
+          editBtn.appendChild(imgEditting);
+        }
         
       } else {
-        if (input_.value !== inputTmp){
-          let isExists = ifTaskExists(input_.value);
-          if (isExists) {
-            alert("This task is already in the list! ");
-            document.getElementById('list-Input').value = '';
-            input_.disabled = !input_.disabled;
-            editBtn.removeChild(imgEditting);
-            editBtn.appendChild(imgEdit); 
-            input_.value = inputTmp;
-            isEdit = false;
-            return;
-            
-          } 
-          else if (!isExists) { 
-            console.log(isExists);
-            input_.disabled = !input_.disabled;
-            editBtn.removeChild(imgEditting);
-            editBtn.appendChild(imgEdit); 
-            todoStorage[index] = input_.value;
-            localStorage.setItem("todoStorage", JSON.stringify(todoStorage));
-            isEdit = false;
-            return;
+        input.value = input.value.trim();
+
+        if (ifTaskExists(input.value)) {
+          idOpen = false;
+          alert("This task is already in the list! ");
+          input.value = inputTmp;
+        } else if (input.value === '') { 
+            alert("You did not change anything in the list! ");
+            input.value = inputTmp;
           }
-        } 
-          // input_.disabled = !input_.disabled;
-          // editBtn.removeChild(imgEditting);
-          // editBtn.appendChild(imgEdit); 
-          // document.getElementById('list-Input').value = '';
-          // todoStorage[index] = input_.value;
-          // localStorage.setItem("todoStorage", JSON.stringify(todoStorage)); 
+          input.disabled = !input.disabled;
+          editBtn.removeChild(imgEditting);
+          editBtn.appendChild(imgEdit); 
+          document.getElementById('list-Input').value = '';
+          todoStorage[index] = input.value;
+          localStorage.setItem("todoStorage", JSON.stringify(todoStorage));  
       }
     }
   },false); 
